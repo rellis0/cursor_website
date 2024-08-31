@@ -4,6 +4,7 @@ from clock import create_clock, update_clock
 from snake import add_snake_game
 from tests.test_clock import TestClock
 from tests.test_snake import TestSnake
+import os
 
 
 def main():
@@ -11,12 +12,22 @@ def main():
         page_title="Cursor Website", page_icon=":clock1:", layout="centered"
     )
 
-    # Add custom CSS and JavaScript to handle scrolling
+    # Serve static files
+    static_dir = os.path.join(os.path.dirname(__file__), "static")
+    st.markdown(
+        f'<script src="{os.path.join(static_dir, "snake_game.js")}"></script>',
+        unsafe_allow_html=True,
+    )
+
+    # Add custom CSS and JavaScript to handle scrolling and center headings
     st.markdown(
         """
         <style>
         #MainMenu {visibility: hidden;}
         footer {visibility: hidden;}
+        .centered-heading {
+            text-align: center;
+        }
         </style>
         <script>
         function disableScroll() {
@@ -39,7 +50,9 @@ def main():
         unsafe_allow_html=True,
     )
 
-    st.title("Cursor Website")
+    st.markdown(
+        "<h1 class='centered-heading'>Cursor Website</h1>", unsafe_allow_html=True
+    )
     clock = create_clock()
     update_clock(clock)
 
@@ -49,24 +62,8 @@ def main():
     if name:
         st.write(f"Hello, {name}!")
 
-    st.header("Snake Game")
+    st.markdown("<h2 class='centered-heading'>Snake Game</h2>", unsafe_allow_html=True)
     add_snake_game()
-
-    # Add some content to make the page scrollable
-    st.header("Additional Content")
-    for i in range(20):
-        st.write(f"This is line {i+1} of additional content.")
-
-    if st.button("Run Tests"):
-        with st.spinner("Running tests..."):
-            suite = unittest.TestSuite()
-            suite.addTest(unittest.makeSuite(TestClock))
-            suite.addTest(unittest.makeSuite(TestSnake))
-            runner = unittest.TextTestRunner(verbosity=2)
-            result = runner.run(suite)
-            st.write(f"Tests run: {result.testsRun}")
-            st.write(f"Errors: {len(result.errors)}")
-            st.write(f"Failures: {len(result.failures)}")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        #snakeCanvas {
+            border: 1px solid white;
+            margin: 0 auto;
+            display: block;
+        }
+        #gameMessage {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            color: #00FF00;
+            text-align: center;
+            text-shadow: 2px 2px 4px #000000;
+        }
+        p {
+            color: #FFFFFF;
+            text-align: center;
+            text-shadow: 1px 1px 2px #000000;
+        }
+    </style>
+</head>
+<body>
+    <div style="position: relative;">
+        <canvas id="snakeCanvas" width="400" height="400"></canvas>
+        <div id="gameMessage">Click to start</div>
+    </div>
+    <p>Use arrow keys to control the snake. Eat the red fruit to grow!</p>
+</body>
+</html>
