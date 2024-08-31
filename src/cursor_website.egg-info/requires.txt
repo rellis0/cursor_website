@@ -1,0 +1,7 @@
+streamlit
+
+[dev]
+pre-commit
+black
+pylint
+mypy

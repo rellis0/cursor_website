@@ -1,0 +1,7 @@
+README.md
+setup.py
+src/cursor_website.egg-info/PKG-INFO
+src/cursor_website.egg-info/SOURCES.txt
+src/cursor_website.egg-info/dependency_links.txt
+src/cursor_website.egg-info/requires.txt
+src/cursor_website.egg-info/top_level.txt
