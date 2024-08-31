@@ -12,8 +12,10 @@ setup(
         "dev": [
             "pre-commit",
             "black",
-            "pylint",
             "mypy",
+        ],
+        "test": [
+            "unittest",
         ],
     },
 )

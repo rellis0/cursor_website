@@ -1,6 +1,6 @@
 # My Streamlit Project
 
-This is a simple Streamlit website project.
+This is a simple Streamlit website project with a clock and a Snake game.
 
 ## Setup
 
@@ -32,11 +32,14 @@ After installing the dependencies, set up pre-commit:
    pre-commit run --all-files
    ```
 
-This will install and set up the pre-commit hooks for Black, Pylint, and Mypy.
+This will install and set up the pre-commit hooks for Black and Mypy.
 
 ## Running the Streamlit app
 
 To run the Streamlit app, use the following command:
 
 ```
-streamlit run src/main.
+streamlit run src/main.py
+```
+
+## Running tests
