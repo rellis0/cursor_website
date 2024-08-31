@@ -20,7 +20,7 @@ def main():
         unsafe_allow_html=True,
     )
 
-    # Add custom CSS and JavaScript to handle scrolling and center headings
+    # Add custom CSS and JavaScript to handle scrolling, center headings, and mobile controls
     st.markdown(
         """
         <style>
@@ -28,6 +28,11 @@ def main():
         footer {visibility: hidden;}
         .centered-heading {
             text-align: center;
+        }
+        #snakeCanvas {
+            max-width: 100%;
+            max-height: 80vh;
+            touch-action: none;
         }
         </style>
         <script>
@@ -44,8 +49,41 @@ def main():
                 canvas.addEventListener('mouseout', enableScroll);
                 canvas.addEventListener('touchstart', disableScroll);
                 canvas.addEventListener('touchend', enableScroll);
+                
+                // Add touch event listeners for swipe controls
+                let startX, startY;
+                canvas.addEventListener('touchstart', (e) => {
+                    startX = e.touches[0].clientX;
+                    startY = e.touches[0].clientY;
+                });
+                canvas.addEventListener('touchmove', (e) => {
+                    e.preventDefault();
+                });
+                canvas.addEventListener('touchend', (e) => {
+                    let endX = e.changedTouches[0].clientX;
+                    let endY = e.changedTouches[0].clientY;
+                    handleSwipe(startX, startY, endX, endY);
+                });
             }
         });
+
+        function handleSwipe(startX, startY, endX, endY) {
+            const dx = endX - startX;
+            const dy = endY - startY;
+            if (Math.abs(dx) > Math.abs(dy)) {
+                if (dx > 0) {
+                    window.snake.changeDirection('right');
+                } else {
+                    window.snake.changeDirection('left');
+                }
+            } else {
+                if (dy > 0) {
+                    window.snake.changeDirection('down');
+                } else {
+                    window.snake.changeDirection('up');
+                }
+            }
+        }
         </script>
     """,
         unsafe_allow_html=True,
