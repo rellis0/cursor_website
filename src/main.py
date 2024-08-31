@@ -72,15 +72,15 @@ def main():
             const dy = endY - startY;
             if (Math.abs(dx) > Math.abs(dy)) {
                 if (dx > 0) {
-                    window.snake.changeDirection('right');
+                    window.changeSnakeDirection('right');
                 } else {
-                    window.snake.changeDirection('left');
+                    window.changeSnakeDirection('left');
                 }
             } else {
                 if (dy > 0) {
-                    window.snake.changeDirection('down');
+                    window.changeSnakeDirection('down');
                 } else {
-                    window.snake.changeDirection('up');
+                    window.changeSnakeDirection('up');
                 }
             }
         }
