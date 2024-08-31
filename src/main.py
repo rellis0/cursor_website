@@ -5,6 +5,7 @@ from snake import add_snake_game
 from tests.test_clock import TestClock
 from tests.test_snake import TestSnake
 import os
+import time
 
 
 def main():
@@ -54,7 +55,6 @@ def main():
         "<h1 class='centered-heading'>Cursor Website</h1>", unsafe_allow_html=True
     )
     clock = create_clock()
-    update_clock(clock)
 
     st.write("Welcome to my simple Streamlit website!")
 
@@ -64,6 +64,20 @@ def main():
 
     st.markdown("<h2 class='centered-heading'>Snake Game</h2>", unsafe_allow_html=True)
     add_snake_game()
+
+    # Create a placeholder for other content
+    content_placeholder = st.empty()
+
+    while True:
+        # Update the clock
+        update_clock(clock)
+
+        # Update other content if needed
+        with content_placeholder:
+            st.write("This content updates every second along with the clock.")
+
+        # Wait for 1 second
+        time.sleep(1)
 
 
 if __name__ == "__main__":
